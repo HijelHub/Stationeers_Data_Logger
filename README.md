@@ -18,7 +18,7 @@ Supports:
 
 [<img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/green/window.svg"> Using The App](#--using-the-app)
 
-[<img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/red/file-earmark-text.svg"> Custom IC10](#custom-ic10)
+[<img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/red/file-earmark-text.svg"> Custom IC10](#--custom-ic10)
 
 
 &nbsp;
@@ -92,7 +92,7 @@ Using the App is fairly straight forward.
 
  1. After Installing the App, open the calculator to figure out how many DataLogger Housings you will need.
  2. Go In-Game and setup the required housings and SAVE your game.
- 3. Select your desired Game Save from the dropdown located in [World Selection]
+ 3. In the App, Click the refresh button (or re-launch the app) and Select your desired Game Save from the dropdown located in [World Selection]
  4. Select a DataLogger Housing in the [Housings] column and click the Arrow button (or just double click)
  5. Repeat this step to add all of your required DataLogger Housings
  6. Select a Housing in the [Selected Housings] List
