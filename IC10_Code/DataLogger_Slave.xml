@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InstructionData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <DateTime>133879545404962006</DateTime>
+  <GameVersion>0.2.5499.24517</GameVersion>
+  <Title>DataLogger Slave</Title>
+  <Description>Slave DataLogger Program​</Description>
+  <Author>Hijel</Author>
+  <WorkshopFileHandle>3458299287</WorkshopFileHandle>
+  <Instructions>#Slave Data Logger Code to be used with the Stationeers Data Logger Windows App
+#Found at: https://github.com/HijelHub/Stationeers_Data_Logger
+#------------------------------------------------------------------------
+#If you have more than one Slave DataLogger, you have to connect them in series.
+#Slave2 would alias Slave1 and Slave1 would alias Master DataLogger.
+#If you try and connect them all to the master datalogger, they will lose sync.
+#and you will lose data.
+alias DataLoggerMaster d0 #Master Datalogger... needed to get timing and iteration count
+alias ProcessHousing d1 #Where your variables are coming from
+#alias IC10HousingName2 d2
+#alias IC10HousingName3 d3
+#alias IC10HousingName4 d4
+#alias IC10HousingName5 d5
+# Don't forget to set the values on the housing with a screwdriver!
+#------------------------------------------------------------------------
+#Setup the Iteration counter
+alias IterationCounter r15
+alias LastIterationCounter r14
+move IterationCounter -1
+move LastIterationCounter 0
+#------------------------------------------------------------------------
+# *** EDIT! - The following defines need to be set correctly on all logger housings ***
+#Change the LoggingInerval to the same value as your main datalogger
+define LoggingInterval 0.5 #Seconds
+#Change the VariableCount to the number of variables you want to log on each event
+define VariableCount 2
+#------------------------------------------------------------------------
+SLAVELOGGER.RUN:
+  beqal IterationCounter -1 SLAVELOGGER.CLEAR #clear stack if called for by Master
+  l IterationCounter DataLoggerMaster Setting #get iteration from main datalogger
+  bneal LastIterationCounter IterationCounter SLAVELOGGER.LOG #if theres a change log data
+  yield
+j SLAVELOGGER.RUN
+SLAVELOGGER.LOG:
+  #make sure there is room in the stack for this logging packet
+  add r13 VariableCount 1
+  add r12 sp r13
+  brlt r12 511 2
+  move sp 0
+#------------------------------------------------------------------------
+  #*** EDIT! THIS PORTION TO REFLECT THE STACK VARIABLES YOU WANT TO GET ***
+  get r0 ProcessHousing 0
+  get r1 ProcessHousing 1
+  #etc...
+  # Write the iteration counter and variables to the stack (the "packet")
+  push IterationCounter
+  push r0
+  push r1
+  #etc...
+#------------------------------------------------------------------------
+  # setup the iteration counters for the next loop
+  move LastIterationCounter IterationCounter
+  s db Setting IterationCounter #display iteration on housing for next Slave Logger
+j ra
+SLAVELOGGER.CLEAR:
+  #Clear this housings stack memory when commanded locally or remotely with a -1 reading
+  clr db
+  move sp 0
+j ra</Instructions>
+</InstructionData>
