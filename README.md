@@ -5,7 +5,7 @@ Supports:
 <img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/blue/microsoft.svg"> Windows 11
 <img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/blue/windows.svg"> Windows 10 64 Bit [Should Work - Untested]
 
--------------
+<hr>
 
 ### Contents
 <img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/orange/joystick.svg"> In-Game Setup
@@ -22,12 +22,12 @@ Supports:
 **There are of course, multiple ways to set this up**  but I would suggest using this "Process Housing-DataLogger Housing" setup to get familiar with the system before writing your own scripts.
 You can have as many Process Housings and DataLogger Housings as you wish, and they can be named whatever you wish.
 
-**Process Housing(s)**
+### **Process Housing(s)**
 In an existing housing (one in which contains some variables you want to log) add the following "DATALOGGER" IC10  function to your code. The purpose of the function is to load variables into registers, reset the stack pointer to 0 (so that each time it writes data it is always overwritten), and then write the variables to the stack. 
 
     DATALOGGER:
       l r0 StorageTank Pressure #or some other variable
-      l r1 StorageTank Pressure #or some other variable
+      l r1 StorageTank Temperature #or some other variable
       # add more here
       move sp 0 #reset stack pointer
       push r0
@@ -39,20 +39,28 @@ Call this function from within your main loop, and within any subsequent loops s
 
 &nbsp;
 
-**DataLogger Housing(s)**
-There are two types of DataLogger Housings, Master and Slaves. The Master housing generates an iteration counter and controls the timing of actual Stack writes. The Slaves connect in series to get the iteration counter they require from the master and they write data to their stack memory only when the iteration counter changes.
+### **DataLogger Housing(s)**
+There are two types of DataLogger Housings, Master and Slaves. The Master housing generates an iteration counter and controls the timing of actual Stack writes for itself and any connected Slaves. The Slaves connect in series to get the iteration counter they require from the master and they write data to their stack memory only when the iteration counter changes.
 
 They are setup this way so that all housings remain in sync. with each other and log data at the same time.
 
+The number of DataLogger Housings you will need is determined by how many variables you want to log, how often, and what your games AutoSave Setting is set to.
+
+If you only require one DataLogger Housing, it should be setup as a Master. If you need more than one, use a Master and then as many Slaves as you need.
+<hr>
+
 Build a IC10 Housing and Chip and add them to the same network as your Process Housing(s). Load the example DataLogger Master program onto the chip and modify it for your needs. (Found in the IC10 Folder of this repository or on the [Steam Workshop](https://steamcommunity.com/profiles/76561198000943434/myworkshopfiles/))
 
- - Change the alias of d0 to reflect the name of your process housing (Don't forget to screwdriver it)
  - Edit the LoggingInterval and VariableCount to reflect your desired settings
  - Edit the Variables you want to get from the Process Housing
+ - Don't Forget to screwdriver the housing to change the value of d0 to reflect your process housing.
  
 [//]: # (Terminator)
+
 
 
     
 
 [[TOP]](#Stationeers-Data-Logger)
+
+
