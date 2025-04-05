@@ -1,4 +1,4 @@
-# Stationeers Data Logger
+# <img src="https://github.com/HijelHub/Stationeers_Data_Logger/blob/f91b9f7929f572897b17f0cdf473b1e4f52e5ca3/Assets/small_ic.png"> Stationeers Data Logger
 Stationeers Data Logger is a Windows Application that is used with the Rocketwerkz game [Stationeers](https://store.steampowered.com/app/544550/Stationeers/). It allows you to collect and log in-game IC10 Stack variables and convert them to csv format for later visualization using any spreadsheet app.
  
 Supports:
@@ -71,7 +71,7 @@ Build a IC10 Housing and Chip and add them to the same network as your Process H
  
 [//]: # (Terminator)
 
-If you also need to use Slave Housings, follow the same procedure.
+If you also need to use Slave Housings, follow the same procedure. (While obviously loading and modifying the Slave program instead of the Master program)
 
 > <img width="20" height="20"
 > src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/green/info-circle.svg"> If you want to download and use the Master and Slave IC10 Programs from this repository you will need to add them to your Game Save Scripts folder. The default location of this folder is:
