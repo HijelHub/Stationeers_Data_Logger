@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InstructionData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <DateTime>133883165871069245</DateTime>
+  <GameVersion>0.2.5499.24517</GameVersion>
+  <Title>DataLogger Master</Title>
+  <Description>​</Description>
+  <Author>Hijel</Author>
+  <WorkshopFileHandle>3458302870</WorkshopFileHandle>
+  <Instructions>#Master Data Logger Code to be used with the Stationeers Data Logger Windows App
+#Found at: https://github.com/HijelHub/Stationeers_Data_Logger
+#------------------------------------------------------------------------
+#*** EDIT! Choose the housings you are getting the variables from ("Process" housings) ***
+alias ProcessHousing d0
+#alias IC10HousingName1 d1
+#alias IC10HousingName2 d2
+#alias IC10HousingName3 d3
+#alias IC10HousingName4 d4
+#alias IC10HousingName5 d5
+# Don't forget to set the above items on the housing with the screwdriver
+#------------------------------------------------------------------------
+# *** EDIT! The following constants need to be set correctly on all logger housings ***
+#Change the LoggingInterval to your desired wait time between logging events
+define LoggingInterval 0.5 #Seconds | lowest useful value is 0.5
+#Change VariableCount to the number of variables you want to log on each packet
+define VariableCount 2
+#------------------------------------------------------------------------
+#Clear the stack
+jal MASTERLOGGER.CLEAR
+#Reserve and setup variable registers
+alias IterationCounter r15
+alias TimeSleep r14
+move IterationCounter 0
+mul TimeSleep LoggingInterval 2
+#------------------------------------------------------------------------
+MASTERLOGGER.LOG:
+  #Update the iteration counter
+  add IterationCounter IterationCounter 1
+  #Display the iteration counter on the housing for slave dataloggers to use
+  s db Setting IterationCounter
+  #Check that there is room in the stack
+  jal MASTERLOGGER.CHECKSTACK
+  #Get the remote variables from the Process Housing(s) on the network
+#------------------------------------------------------------------------
+  #*** EDIT! THIS PORTION TO REFLECT THE VARIABLES YOU WANT TO GET ***
+  get r0 ProcessHousing 0
+  get r1 ProcessHousing 1
+  #etc...
+  # Write the iteration counter and variables to the stack (the "packet")
+  push IterationCounter
+  push r0
+  push r1
+  #etc...
+#------------------------------------------------------------------------
+#Wait until the next required cycle
+j MASTERLOGGER.WAIT
+
+MASTERLOGGER.CHECKSTACK:
+  # check to see if next data packet will fit on the stack, if not loop back to sp 0
+  add r13 VariableCount 1
+  add r12 sp r13
+  blt r12 511 ra
+  move sp 0
+j ra
+
+MASTERLOGGER.WAIT:
+  #not using Sleep function to allow sub second waits
+  sub TimeSleep TimeSleep 1
+  yield
+  brgtz TimeSleep -2
+  mul TimeSleep LoggingInterval 2
+j MASTERLOGGER.LOG
+
+MASTERLOGGER.CLEAR:
+  #let other data logger housings know to clear their stack memory
+  s db Setting -1
+  yield
+  #Clear this housings stack memory
+  clr db
+  move sp 0
+  yield
+j ra</Instructions>
+</InstructionData>
