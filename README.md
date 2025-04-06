@@ -94,7 +94,7 @@ Using the App is fairly straight forward.
  2. Go In-Game and setup the required housings and SAVE your game.
  3. In the App, Click the refresh button (or re-launch the app) and Select your desired Game Save from the dropdown located in [World Selection]
  4. Select a DataLogger Housing in the [Housings] column and click the Arrow button (or just double click)
- 5. Repeat this step to add all of your required DataLogger Housings
+ 5. Repeat this step to add all of your required DataLogger Housings (You do not need to add Process Housings, only DataLogger Housings)
  6. Select a Housing in the [Selected Housings] List
  7. If the Housing is recognized as a DataLogger Housing the header will turn green and the [Data Points] Interface will be displayed. If it does not recognize the Housing as a DataLogger Housing the header will turn red and you will get a warning message.
  8. Add your desired Data Points to the [Data Points To Log] list by selecting the Item and clicking the Arrow button (or just double click)
