@@ -114,7 +114,7 @@ If there is a missing DataPoint in a Housings Stack Variable set, then the App w
 
 As stated before, there are many ways to do this besides using the provided "Process Housing-DataLogger Housing" example.
 
-If you want to come up with your own system and scripts, you will need to follow these guidlines in order for the App to recognize a Housing as a DataLogger Housing.
+If you want to come up with your own system and scripts, you will need to follow these guidlines in order for the App to recognize a Housing as a DataLogger Housing, and to ensure you Data Packets are correctly formatted.
 
 A DataLogger Housing **MUST** have:
 
