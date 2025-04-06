@@ -9,7 +9,7 @@ Supports:
 
 <br>
 
-[<img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/blue/cloud-download.svg"> Installer Download](https://)
+[<img width="20" height="20" src="https://raw.githubusercontent.com/HijelHub/GitStrap_SVG_Icons/b674246b8f46d8bc2c75f3cf5cf395a370b86ae2/icons/blue/cloud-download.svg"> Stationeers_Data_Logger_0_1_WIN64_Installer.zip](https://github.com/HijelHub/Stationeers_Data_Logger/raw/refs/heads/main/Windows_Installer/Version_0_1/Stationeers_Data_Logger_0_1_WIN64_Installer.zip)
 <hr>
 
 ### Contents
